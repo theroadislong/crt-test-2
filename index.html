@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Задание 2</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <section class="search">
+    <h2 class="search__description">Выберите столбец для фильтрации и сортировки</h2>
+    <div class="search__wrapper">
+      <select class="search__select">
+        <option value="id">Номер</option>
+        <option value="name" selected>Имя</option>
+        <option value="date">Дата</option>
+        <option value="count">Количество</option>
+      </select>
+      <input type="text" class="search__input" placeholder="Искать совпадения">
+    </div>
+    </seciton>
+    <main class="main">
+      <h2 class="main__heading">Таблица с данными</h2>
+      <table class="main__table table">
+        <tr class="table__heading row">
+          <th class="row__id">№</th>
+          <th class="row__name">Имя</th>
+          <th class="row__date">Дата</th>
+          <th class="row__count">Кол-во</th>
+        </tr>
+      </table>
+    </main>
+    <template class="row-template" style="display: none">
+      <tr class="table__row row">
+        <td class="row__id">id</td>
+        <td class="row__name">name</td>
+        <td class="row__date">date</td>
+        <td class="row__count">count</td>
+      </tr>
+      </table>
+    </template>
+    <script src="build/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+
+.main__heading,
+.search__description {
+  text-align: center;
+}
+
+.main__table {
+  font-size: 18px;
+  margin: 0 auto;
+}
+
+th, td {
+  padding: 10px;
+  min-width: 120px;
+}
+
+.row__id,
+.row__count {
+  min-width: 50px;
+}
+
+.table__row:nth-child(even) {
+  background-color: lightgray;
+}
+
+.table__row:nth-child(odd) {
+  background-color: lightblue;
+}
+
+.row__id,
+.row__name {
+  text-align: center;
+}
+
+.table__heading th {
+  text-align: center;
+}
+
+.row__date,
+.row__count {
+  text-align: right;
+}
+
+.search__input {
+  padding: 5px 20px;
+  font-size: 16px;
+}
+
+.search__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: 500px;
+  justify-content: center;
+}
+
+.search__select {
+  font-size: 18px;
+  margin-right: 20px;
+}
+
+.search__radio {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.search__radio div:first-child {
+  margin-right: 70px;
+}
+
+@media (max-width: 500px) {
+  .main__table {
+    font-size: 12px;
+  }
+  th, td {
+    padding: 10px;
+    min-width: 40px;
+  }
+  .row__id,
+  .row__count {
+    min-width: 20px;
+  }
+}

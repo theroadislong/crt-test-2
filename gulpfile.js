@@ -3,7 +3,7 @@ const babel = require("gulp-babel");
 
 gulp.task("js", () =>
   gulp
-    .src("src/app.js")
+    .src("src/*.js")
     .pipe(
       babel({
         presets: ["@babel/env"]
