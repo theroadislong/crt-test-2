@@ -1,3 +1,6 @@
+.main {
+  margin-top: 80px;
+}
 
 .main__heading,
 .search__description {
@@ -41,12 +44,14 @@ th, td {
   text-align: right;
 }
 
-.search__input {
+.search__input,
+.sort__input {
   padding: 5px 20px;
   font-size: 16px;
 }
 
-.search__wrapper {
+.search__wrapper,
+.sort__wrapper {
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
@@ -54,7 +59,12 @@ th, td {
   justify-content: center;
 }
 
-.search__select {
+.search__wrapper {
+  margin-bottom: 20px;
+}
+
+.search__select,
+.sort__select {
   font-size: 18px;
   margin-right: 20px;
 }

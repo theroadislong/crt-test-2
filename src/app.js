@@ -95,42 +95,78 @@ const objects = [
   { id: 5, name: "Евгений", date: "12.09.2018", count: 112 },
   { id: 6, name: "Мария", date: "1.08.2016", count: 122 },
   { id: 7, name: "Анастасия", date: "20.11.2018", count: 34 },
-  { id: 8, name: "Степан", date: "12.11.2019", count: 10 }
+  { id: 8, name: "Степан", date: "12.11.2019", count: 30 },
+  { id: 88, name: "Анастасия", date: "20.11.2018", count: 34 },
+  { id: 8, name: "Степан", date: "12.11.2019", count: 20 },
+  { id: 11, name: "Анастасия", date: "20.11.2018", count: 34 },
+  { id: 111, name: "Степан", date: "12.11.2019", count: 100 }
 ];
 
 // html elements
 const table = document.querySelector(".main__table");
 const rowTemplate = document.querySelector(".row-template").content;
-const search = document.querySelector(".search__input");
-const select = document.querySelector(".search__select");
-let selectedSelect = "name";
+
+const searchInput = document.querySelector(".search__input");
+const searchSelect = document.querySelector(".search__select");
+
+const sortInput = document.querySelector(".sort__input");
+const sortSelect = document.querySelector(".sort__select");
+
+let selectedSearchSelect = "name";
+let selectedSortSelect = "none";
 
 // main functions
-const selectHandler = evt => {
-  selectedSelect = evt.target.value;
-  search.addEventListener("input", event => searchHandler(event));
+const searchSelectHandler = evt => {
+  selectedSearchSelect = evt.target.value;
 };
 
-const searchHandler = evt => {
-  const currentValue = evt.target.value.toLowerCase();
+const searchHandler = () => {
+  const searchValue = searchInput.value;
+  const sortValue = sortInput.value || "";
+
   const filterFunction = object =>
-    currentValue === ""
+    searchValue === ""
       ? object
-      : object[selectedSelect]
+      : object[selectedSearchSelect]
           .toString()
           .toLowerCase()
-          .indexOf(currentValue) !== -1;
+          .indexOf(searchValue) !== -1;
+
+  const sortBig = object =>
+    searchValue === "" ? object : object[selectedSearchSelect] > sortValue;
+
+  const sortSmall = object =>
+    searchValue === "" ? object : object[selectedSearchSelect] < sortValue;
 
   // убираем все строки перед каждой генерацией
   deleteRows();
 
-  //рендерим в таблицу те строки, которые прошли фильтрацию
-  render(objects.map(prettify).filter(object => filterFunction(object)), table);
-};
+  const filteredBySearchObjects = objects.map(prettify).filter(object => {
+    if (selectedSortSelect === "none") {
+      return filterFunction(object);
+    }
+    if (selectedSortSelect === "big") {
+      return filterFunction(object) && sortBig(object);
+    }
+    if (selectedSortSelect === "small") {
+      return filterFunction(object) && sortSmall(object);
+    }
+  });
 
-// logic
+  //рендерим строки по совпадению
+  render(filteredBySearchObjects, table);
+};
 
 // сначала рендерим первоначальные данные
 render(objects.map(prettify), table);
 
-select.addEventListener("change", event => selectHandler(event));
+searchInput.addEventListener("input", event => searchHandler(event));
+searchSelect.addEventListener("change", event => searchSelectHandler(event));
+
+// больше / меньше
+const sortSelectHandler = evt => {
+  selectedSortSelect = evt.target.value;
+};
+
+sortInput.addEventListener("input", event => searchHandler(event));
+sortSelect.addEventListener("change", event => sortSelectHandler(event));

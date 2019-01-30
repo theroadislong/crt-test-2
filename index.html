@@ -9,7 +9,7 @@
   </head>
   <body>
     <section class="search">
-    <h2 class="search__description">Выберите столбец для фильтрации и сортировки</h2>
+    <h2 class="search__description">Выберите столбец для поиска совпадений</h2>
     <div class="search__wrapper">
       <select class="search__select">
         <option value="id">Номер</option>
@@ -18,6 +18,14 @@
         <option value="count">Количество</option>
       </select>
       <input type="text" class="search__input" placeholder="Искать совпадения">
+    </div>
+    <div class="sort__wrapper">
+      <select class="sort__select">
+        <option value="none" selected>Без сортировки</option>
+        <option value="big">Больше</option>
+        <option value="small">Меньше</option>
+      </select>
+      <input type="text" class="sort__input" placeholder="Сортировать">
     </div>
     </seciton>
     <main class="main">
