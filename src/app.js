@@ -57,6 +57,15 @@ const getMonthNumber = str => {
   }
 };
 
+const prettify = element => {
+  const result = {};
+  result.id = element.id;
+  result.name = element.name;
+  result.date = prettifyDate(element.date);
+  result.count = element.count;
+  return result;
+};
+
 const deleteRows = () => {
   const rows = document.querySelectorAll(".table__row");
   rows.forEach(row => row.remove());
@@ -72,7 +81,7 @@ const renderRow = object => {
 };
 
 const render = (objects, destination) => {
-  let fragment = document.createDocumentFragment();
+  const fragment = document.createDocumentFragment();
   objects.forEach(object => fragment.appendChild(renderRow(object)));
   destination.appendChild(fragment);
 };
@@ -89,36 +98,39 @@ const objects = [
   { id: 8, name: "Степан", date: "12.11.2019", count: 10 }
 ];
 
-// logic
+// html elements
 const table = document.querySelector(".main__table");
 const rowTemplate = document.querySelector(".row-template").content;
-
-render(objects, table);
-
 const search = document.querySelector(".search__input");
 const select = document.querySelector(".search__select");
-
 let selectedSelect = "name";
 
-const searchHandler = evt => {
-  deleteRows();
-  const currentValue = evt.target.value.toLowerCase();
-  render(
-    objects.filter(object =>
-      currentValue === ""
-        ? object
-        : object[selectedSelect]
-            .toString()
-            .toLowerCase()
-            .indexOf(currentValue) !== -1
-    ),
-    table
-  );
-};
-
+// main functions
 const selectHandler = evt => {
   selectedSelect = evt.target.value;
   search.addEventListener("input", event => searchHandler(event));
 };
+
+const searchHandler = evt => {
+  const currentValue = evt.target.value.toLowerCase();
+  const filterFunction = object =>
+    currentValue === ""
+      ? object
+      : object[selectedSelect]
+          .toString()
+          .toLowerCase()
+          .indexOf(currentValue) !== -1;
+
+  // убираем все строки перед каждой генерацией
+  deleteRows();
+
+  //рендерим в таблицу те строки, которые прошли фильтрацию
+  render(objects.map(prettify).filter(object => filterFunction(object)), table);
+};
+
+// logic
+
+// сначала рендерим первоначальные данные
+render(objects.map(prettify), table);
 
 select.addEventListener("change", event => selectHandler(event));
