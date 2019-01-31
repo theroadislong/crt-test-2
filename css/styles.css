@@ -8,8 +8,8 @@
 }
 
 .main__table {
-  font-size: 18px;
   margin: 0 auto;
+  font-size: 18px;
 }
 
 th, td {
@@ -52,10 +52,10 @@ th, td {
 
 .search__wrapper,
 .sort__wrapper {
-  display: flex;
-  flex-wrap: wrap;
   margin: 0 auto;
+  display: flex;
   max-width: 500px;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -65,15 +65,15 @@ th, td {
 
 .search__select,
 .sort__select {
-  font-size: 18px;
   margin-right: 20px;
+  font-size: 18px;
 }
 
 .search__radio {
-  width: 100%;
-  display: flex;
-  justify-content: center;
   margin-top: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
 .search__radio div:first-child {
