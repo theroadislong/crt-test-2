@@ -20,7 +20,6 @@
   const searchHandler = () => {
     const searchValue = searchInput.value.toLowerCase();
     const sortValue = sortInput.value || "";
-
     const filterFunction = object =>
       searchValue === ""
         ? object
@@ -30,10 +29,10 @@
             .indexOf(searchValue) !== -1;
 
     const sortBig = object =>
-      searchValue === "" ? object : object[selectedSearchSelect] > sortValue;
+      sortValue === "" ? object : object[selectedSearchSelect] > sortValue;
 
     const sortSmall = object =>
-      searchValue === "" ? object : object[selectedSearchSelect] < sortValue;
+      sortValue === "" ? object : object[selectedSearchSelect] < sortValue;
 
     const filteredBySearchObjects = window.data.objects
       .map(window.utils.prettify)
