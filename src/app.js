@@ -121,7 +121,7 @@ const searchSelectHandler = evt => {
 };
 
 const searchHandler = () => {
-  const searchValue = searchInput.value;
+  const searchValue = searchInput.value.toLowerCase();
   const sortValue = sortInput.value || "";
 
   const filterFunction = object =>
